@@ -9,9 +9,7 @@ class Taxes:
             host='localhost',
             port=5434
         )
-
-
-
+#SQL request (two tables)
     def request_sql(self,min_tax,max_tax):
         query = """SELECT o.tax_description, o.report_period_type, c.taxpayer_numder, c.address, c.total_due
         FROM taxes AS o 
@@ -23,7 +21,9 @@ class Taxes:
         cursor.execute(query, (min_tax, max_tax))
         return cursor.fetchall()
 
-
+#Close connection with database
+    def close_sql(self):
+        self.connection.close()
 
 
 
